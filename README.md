@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [TSDX](https://github.com/jaredpalmer/tsdx).
 
-## Local Development 2
+## Local Development 3
 
 Below is a list of commands you will probably find useful.
 
