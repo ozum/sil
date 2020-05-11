@@ -8,7 +8,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Synopsis 2](#synopsis-2)
+- [Synopsis 4](#synopsis-4)
 - [Details](#details)
 - [API](#api)
 - [sil](#sil)
@@ -19,7 +19,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# Synopsis 2
+# Synopsis 4
 
 # Details
 
@@ -40,7 +40,7 @@
 
 ▸ **deneme**(`a`: number): *number*
 
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/d4f92cc/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/ozum/sil/blob/83475a3/src/index.ts#L7)*
 
 Some function
 
