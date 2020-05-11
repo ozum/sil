@@ -1,0 +1,33 @@
+{
+  "kinds": { "1": "Module", "64": "Function" },
+  "rows": [
+    { "id": 0, "kind": 1, "name": "\"deneme.test\"", "url": "modules/_deneme_test_.html", "classes": "tsd-kind-module" },
+    { "id": 1, "kind": 1, "name": "\"index\"", "url": "modules/_index_.html", "classes": "tsd-kind-module" },
+    {
+      "id": 2,
+      "kind": 64,
+      "name": "deneme",
+      "url": "modules/_index_.html#deneme",
+      "classes": "tsd-kind-function tsd-parent-kind-module",
+      "parent": "\"index\""
+    }
+  ],
+  "index": {
+    "version": "2.3.8",
+    "fields": ["name", "parent"],
+    "fieldVectors": [
+      ["name/0", [0, 9.808]],
+      ["parent/0", []],
+      ["name/1", [1, 4.7]],
+      ["parent/1", []],
+      ["name/2", [2, 9.808]],
+      ["parent/2", [1, 0.259]]
+    ],
+    "invertedIndex": [
+      ["deneme", { "_index": 2, "name": { "2": {} }, "parent": {} }],
+      ["deneme.test", { "_index": 0, "name": { "0": {} }, "parent": {} }],
+      ["index", { "_index": 1, "name": { "1": {} }, "parent": { "2": {} } }]
+    ],
+    "pipeline": []
+  }
+}
