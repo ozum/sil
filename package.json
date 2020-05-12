@@ -47,10 +47,10 @@
   },
   "lint-staged": {
     "*.{jsx,tsx}": [
-      "eslint --cache --fix"
+      "eslint --fix"
     ],
     "*.{js,ts}": [
-      "eslint --cache --fix",
+      "eslint --fix",
       "jest --bail --coverage --findRelatedTests --config=jest.config.json"
     ],
     "*.{json,md,gql,less,css}": [
