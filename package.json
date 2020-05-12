@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {},
-  "name": "sil",
+  "name": "@ozum/sil",
   "author": "Özüm Eldoğan",
   "module": "dist/sil.esm.js",
   "devDependencies": {
@@ -62,5 +62,9 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozum/sil.git"
   }
 }

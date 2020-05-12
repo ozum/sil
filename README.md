@@ -1,12 +1,7 @@
 # sil
 
-
-
-
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Synopsis 4](#synopsis-4)
 - [Details](#details)
@@ -18,8 +13,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
-# Synopsis 4
+# Synopsis 4X
 
 # Details
 
@@ -29,31 +23,28 @@
 
 # API
 
-
 <a name="readmemd"></a>
 
 # sil
 
 ## Functions
 
-###  deneme
+### deneme
 
-▸ **deneme**(`a`: number): *number*
+▸ **deneme**(`a`: number): _number_
 
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/83475a3/src/index.ts#L7)*
+_Defined in [index.ts:7](https://github.com/ozum/sil/blob/83475a3/src/index.ts#L7)_
 
 Some function
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`a` | number | is number to return |
+| Name | Type   | Description         |
+| ---- | ------ | ------------------- |
+| `a`  | number | is number to return |
 
-**Returns:** *number*
+**Returns:** _number_
 
 number
 
-
 # Contribution
-
