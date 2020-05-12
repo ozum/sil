@@ -50,6 +50,7 @@
       "eslint --fix"
     ],
     "*.{js,ts}": [
+      "echo",
       "eslint --fix",
       "jest --bail --coverage --findRelatedTests --config=jest.config.json"
     ],
