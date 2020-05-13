@@ -39,12 +39,6 @@ jobs:
         env:
           CI: true
 
-      # - name: eslint on Commit
-      #   # if: github.event_name == 'push'
-      #   uses: stefanoeb/eslint-action@1.0.2
-      #   with:
-      #     args: '--cache --max-warnings 0'
-
       - name: Create README.md
         run: npx devkeeper-docs readme
         env:
@@ -58,11 +52,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Save Lint Report
+      - name: Lint and create report
         run: yarn lint --output-file eslint_report.json --format json
         continue-on-error: true
 
-      - name: Annotate Code Linting Results
+      - name: Annotate linting results
         uses: ataylorme/eslint-annotate-action@1.0.4
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
@@ -74,21 +68,12 @@ jobs:
           name: eslint_report.json
           path: eslint_report.json
 
-      - name: Lint
-        run: yarn lint
+      - name: Test
+        run: yarn test --ci --coverage --maxWorkers=2
+        env:
+          CI: true
 
-      # - name: Test
-      #   run: yarn test --ci --coverage --maxWorkers=2
-      #   env:
-      #     CI: true
-
-      # - name: Build
-      #   run: yarn build
-      #   env:
-      #     CI: true
-
-
-
-      # - run: npm install
-      # - run: npm run build --if-present
-      # - run: npm test
+      - name: Build
+        run: yarn build
+        env:
+          CI: true
