@@ -40,7 +40,7 @@
 
 ▸ **deneme**(`a`: number): *number*
 
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/c6c37f9/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/ozum/sil/blob/9d21d53/src/index.ts#L7)*
 
 Some function
 
