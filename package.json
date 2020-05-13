@@ -14,15 +14,9 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
-    "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json",
-    "lint": "eslint --cache --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'",
-    "lint:report": "eslint --cache --max-warnings 0 --output-file eslint_report.json --format json 'src/**/*.+(js|jsx|ts|tsx|vue)'",
     "prepare": "tsdx build",
-    "xlint:report": "yarn lint --output-file eslint_report.json --format json",
-    "xlint:report2": "eslint --ext .ts --output-file eslint_report.json --format json src",
-    "readme": "devkeeper-docs readme",
-    "docs:dev": "devkeeper-docs vuepress-dev",
-    "docs:build": "devkeeper-docs vuepress"
+    "lint": "yarn lint:base  'src/**/*.+(js|jsx|ts|tsx|vue)'",
+    "lint:base": "eslint --cache --max-warnings 0"
   },
   "peerDependencies": {},
   "name": "@ozum/sil",
@@ -32,7 +26,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint-config-devkeeper": "^1.0.9",
+    "eslint-config-devkeeper": "^1.0.10",
     "husky": "^4.2.5",
     "lint-staged": ">=10",
     "tsdx": "^0.13.2",
@@ -54,10 +48,10 @@
   },
   "lint-staged": {
     "*.{jsx,tsx,vue}": [
-      "eslint --cache --max-warnings 0"
+      "yarn lint:base --fix"
     ],
     "*.{js,ts}": [
-      "eslint --cache --max-warnings 0",
+      "yarn lint:base --fix",
       "jest --bail --coverage --findRelatedTests --config=jest.config.json"
     ],
     "*.{json,less,css,md,gql,graphql,html,yaml}": [
