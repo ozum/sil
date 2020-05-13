@@ -14,9 +14,15 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
-    "lint": "tsdx lint",
+    "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json",
+    "lint": "yarn lint:base 'src/**/*.+(js|jsx|ts|tsx|vue)'",
+    "lint:base": "eslint --cache --max-warnings 0",
     "prepare": "tsdx build",
-    "readme": "devkeeper-docs readme"
+    "xlint:report": "yarn lint --output-file eslint_report.json --format json",
+    "xlint:report2": "eslint --ext .ts --output-file eslint_report.json --format json src",
+    "readme": "devkeeper-docs readme",
+    "docs:dev": "devkeeper-docs vuepress-dev",
+    "docs:build": "devkeeper-docs vuepress"
   },
   "peerDependencies": {},
   "name": "@ozum/sil",
@@ -26,8 +32,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "cz-conventional-changelog": "^3.2.0",
-    "devkeeper-docs": "^0.1.7",
-    "eslint-config-devkeeper": "^1",
+    "eslint-config-devkeeper": "^1.0.9",
     "husky": "^4.2.5",
     "lint-staged": ">=10",
     "tsdx": "^0.13.2",
@@ -37,7 +42,7 @@
   "dependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "xpre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
@@ -48,14 +53,14 @@
     ]
   },
   "lint-staged": {
-    "*.{jsx,tsx}": [
-      "eslint --cache --fix --max-warnings 0"
+    "*.{jsx,tsx,vue}": [
+      "yarn lint:base --fix"
     ],
     "*.{js,ts}": [
-      "eslint --cache --fix --max-warnings 0",
+      "yarn lint:base --fix",
       "jest --bail --coverage --findRelatedTests --config=jest.config.json"
     ],
-    "*.{json,md,gql,less,css}": [
+    "*.{json,less,css,md,gql,graphql,html,yaml}": [
       "prettier --write"
     ],
     ".*{rc, json}": "jsonlint"
