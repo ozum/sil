@@ -46,7 +46,7 @@ jobs:
       #     args: '--cache --max-warnings 0'
 
       - name: Create README.md
-        run: devkeeper-docs readme
+        run: npm run readme # npx devkeeper-docs readme
         env:
           CI: true
 
