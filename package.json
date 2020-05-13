@@ -15,8 +15,8 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json",
-    "lint": "yarn lint:base 'src/**/*.+(js|jsx|ts|tsx|vue)'",
-    "lint:base": "eslint --cache --max-warnings 0",
+    "lint": "eslint --cache --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'",
+    "lint:report": "eslint --cache --max-warnings 0 --output-file eslint_report.json --format json 'src/**/*.+(js|jsx|ts|tsx|vue)'",
     "prepare": "tsdx build",
     "xlint:report": "yarn lint --output-file eslint_report.json --format json",
     "xlint:report2": "eslint --ext .ts --output-file eslint_report.json --format json src",
@@ -54,10 +54,10 @@
   },
   "lint-staged": {
     "*.{jsx,tsx,vue}": [
-      "yarn lint:base --fix"
+      "eslint --cache --max-warnings 0"
     ],
     "*.{js,ts}": [
-      "yarn lint:base --fix",
+      "eslint --cache --max-warnings 0",
       "jest --bail --coverage --findRelatedTests --config=jest.config.json"
     ],
     "*.{json,less,css,md,gql,graphql,html,yaml}": [
