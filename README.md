@@ -14,6 +14,7 @@
 - [@ozum/sil](#ozumsil)
   - [Functions](#functions)
     - [deneme](#deneme)
+    - [sil](#sil)
 - [Contribution](#contribution)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -40,11 +41,27 @@
 
 ▸ **deneme**(`a`: number): *number*
 
-<<<<<<< HEAD
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/bfddeaa/src/index.ts#L7)*
-=======
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/315eeb4/src/index.ts#L7)*
->>>>>>> d690fdad6b8c9264beae4385394cb726be0e7c02
+*Defined in [index.ts:7](https://github.com/ozum/sil/blob/bd788b6/src/index.ts#L7)*
+
+Some function
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`a` | number | is number to return |
+
+**Returns:** *number*
+
+number
+
+___
+
+###  sil
+
+▸ **sil**(`a`: number): *number*
+
+*Defined in [sub/sil.ts:7](https://github.com/ozum/sil/blob/bd788b6/src/sub/sil.ts#L7)*
 
 Some function
 
