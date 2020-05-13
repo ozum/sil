@@ -6,5 +6,5 @@
  */
 export default function deneme(a: number): number {
   // const b = 732;
-  return a;
+  return a; // 1
 }
