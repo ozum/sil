@@ -41,7 +41,7 @@
 
 ▸ **deneme**(`a`: number): *number*
 
-*Defined in [index.ts:7](https://github.com/ozum/sil/blob/bd788b6/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/ozum/sil/blob/e04e166/src/index.ts#L7)*
 
 Some function
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **sil**(`a`: number): *number*
 
-*Defined in [sub/sil.ts:7](https://github.com/ozum/sil/blob/bd788b6/src/sub/sil.ts#L7)*
+*Defined in [sub/sil.ts:7](https://github.com/ozum/sil/blob/e04e166/src/sub/sil.ts#L7)*
 
 Some function
 
