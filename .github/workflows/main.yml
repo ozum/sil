@@ -58,9 +58,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lint
-        run: yarn lint
-
       - name: Save Lint Report
         run: yarn lint --output-file eslint_report.json --format json
         continue-on-error: true
@@ -76,6 +73,9 @@ jobs:
         with:
           name: eslint_report.json
           path: eslint_report.json
+
+      - name: Lint
+        run: yarn lint
 
       # - name: Test
       #   run: yarn test --ci --coverage --maxWorkers=2
