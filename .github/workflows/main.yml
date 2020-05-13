@@ -28,6 +28,7 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v1
+        with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
           restore-keys: |
