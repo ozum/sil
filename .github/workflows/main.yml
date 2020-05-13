@@ -18,15 +18,15 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
+      # - name: Cache node modules (npm)
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+      #     key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-npm-
 
-      - name: Cache node modules
+      - name: Cache node modules (yarn)
         uses: actions/cache@v1
         with:
           path: ~/.cache/yarn
@@ -46,7 +46,7 @@ jobs:
       #     args: '--cache --max-warnings 0'
 
       - name: Create README.md
-        run: npx devkeeper-docs readme
+        run: devkeeper-docs readme
         env:
           CI: true
 
