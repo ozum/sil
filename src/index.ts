@@ -5,6 +5,6 @@
  * @returns number
  */
 export default function deneme(a: number): number {
-  const b = 32;
+  // const b = 732;
   return a;
 }
