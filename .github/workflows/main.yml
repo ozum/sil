@@ -20,18 +20,20 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules
         with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          # path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          # key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          # restore-keys: |
+          #   ${{ runner.os }}-npm-
+
+          # YARN version
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: npm install --no-audit # `npm ci` is not used, because `node_modules` are cached, and `npm ci` deletes `node_modules`.
+        run: yarn # npm install --no-audit # `npm ci` is not used, because `node_modules` are cached, and `npm ci` deletes `node_modules`.
         env:
           CI: true
 
