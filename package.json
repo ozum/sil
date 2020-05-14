@@ -20,7 +20,7 @@
     "lint:base": "eslint --cache --max-warnings 0",
     "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json",
     "format2": "prettier --ignore-path .eslintignore --check './**/*.+(json|less|css|md|gql|graphql|html|yaml)'",
-    "r": "git pull && git commit -m 'jhdegege' && git push"
+    "r": "git pull && git commit -m 'fix: jhdegege' && git push"
   },
   "peerDependencies": {},
   "name": "@ozum/sil",
