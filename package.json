@@ -15,9 +15,12 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "prepare": "tsdx build",
+    "lint2": "yarn lint:base --ext js,jsx,ts,tsx,vue .",
     "lint": "yarn lint:base  'src/**/*.+(js|jsx|ts|tsx|vue)'",
     "lint:base": "eslint --cache --max-warnings 0",
-    "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json"
+    "format": "prettier --check 'src/**/*.+(json|less|css|md|gql|graphql|html|yaml)' package.json",
+    "format2": "prettier --ignore-path .eslintignore --check './**/*.+(json|less|css|md|gql|graphql|html|yaml)'",
+    "r": "git pull && git commit -m 'temp commit' && git push"
   },
   "peerDependencies": {},
   "name": "@ozum/sil",
@@ -35,9 +38,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {},
-  "husky": {
+  "xxhusky": {
     "hooks": {
-      "xpre-commit": "lint-staged",
+      "pre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }

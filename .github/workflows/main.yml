@@ -43,34 +43,35 @@ jobs:
         env:
           CI: true
 
-      - name: Lint and create report
-        run: yarn lint --output-file eslint_report.json --format json
-        continue-on-error: true
-
       - name: Run linters
         uses: samuelmeuli/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
           eslint: true
           eslint_extensions: js,jsx,ts,tsx,vue
+          eslint_args: --max-warnings 0
           prettier: true
           prettier_extensions: json,less,css,md,gql,graphql,html,yaml
+          prettier_args: --ignore-path .eslintignore
 
+      # - name: Lint and create report
+      #   run: yarn lint --output-file eslint_report.json --format json
+      #   continue-on-error: true
 
-      - name: Annotate linting results
-        uses: ataylorme/eslint-annotate-action@1.0.4
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          report-json: "eslint_report.json"
+      # - name: Annotate linting results
+      #   uses: ataylorme/eslint-annotate-action@1.0.4
+      #   with:
+      #     repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      #     report-json: "eslint_report.json"
 
-      - name: Upload ESLint report
-        uses: actions/upload-artifact@v1
-        with:
-          name: eslint_report.json
-          path: eslint_report.json
+      # - name: Upload ESLint report
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: eslint_report.json
+      #     path: eslint_report.json
 
-      - name: Check format
-        run: yarn format
+      # - name: Check format
+      #   run: yarn format
 
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
