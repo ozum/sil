@@ -68,6 +68,9 @@ jobs:
           name: eslint_report.json
           path: eslint_report.json
 
+      - name: Check format
+        run: yarn prettier
+
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
         env:
