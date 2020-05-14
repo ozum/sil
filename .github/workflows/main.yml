@@ -21,8 +21,8 @@ jobs:
 
       - name: Lint commit message
         uses: wagoid/commitlint-github-action@v1
-          with:
-            configFile: package.json
+        with:
+          configFile: package.json
 
       - name: Use Node 12
         uses: actions/setup-node@v1
