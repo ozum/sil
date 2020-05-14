@@ -1,9 +1,9 @@
 name: CI / CD
-  on:
-    push:
-      branches: [master, next, next-major, alpha, beta]
-    pull_request:
-      branches: ["*"]
+on:
+  push:
+    branches: [master, next, next-major, alpha, beta]
+  pull_request:
+    branches: ["*"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,19 +43,6 @@ jobs:
         env:
           CI: true
 
-      - name: Create README.md
-        run: npx devkeeper-docs readme
-        env:
-          CI: true
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v4
-        with:
-          message: "docs: auto generate README from template"
-          add: "README.md"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Lint and create report
         run: yarn lint --output-file eslint_report.json --format json
         continue-on-error: true
@@ -94,6 +81,19 @@ jobs:
         run: yarn build
         env:
           CI: true
+
+      - name: Create README.md
+        run: npx devkeeper-docs readme
+        env:
+          CI: true
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "docs: auto generate README from template"
+          add: "README.md"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Semantic Release
         uses: codfish/semantic-release-action@master
