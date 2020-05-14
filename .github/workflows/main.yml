@@ -1,8 +1,9 @@
-name: CI
-  push:
-    branches: [master, next, next-major, alpha, beta]
-  pull_request:
-    branches: ["*"]
+name: CI / CD
+  on:
+    push:
+      branches: [master, next, next-major, alpha, beta]
+    pull_request:
+      branches: ["*"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,6 +59,16 @@ jobs:
       - name: Lint and create report
         run: yarn lint --output-file eslint_report.json --format json
         continue-on-error: true
+
+      - name: Run linters
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          eslint: true
+          eslint_extensions: js,jsx,ts,tsx,vue
+          prettier: true
+          prettier_extensions: json,less,css,md,gql,graphql,html,yaml
+
 
       - name: Annotate linting results
         uses: ataylorme/eslint-annotate-action@1.0.4
