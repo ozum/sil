@@ -16,13 +16,6 @@ jobs:
 
       - name: Begin CI...
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      # - name: Lint commit message
-      #   uses: wagoid/commitlint-github-action@v1
-      #   with:
-      #     configFile: package.json
 
       - name: Use Node 12
         uses: actions/setup-node@v1
@@ -50,16 +43,22 @@ jobs:
         env:
           CI: true
 
-      - name: Run linters
-        uses: samuelmeuli/lint-action@v1
+      - name: Run ESLint
+      - uses: hallee/eslint-action@1.0.3
+        # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
         with:
-          github_token: ${{ secrets.github_token }}
-          eslint: true
-          eslint_extensions: js,jsx,ts,tsx,vue
-          eslint_args: --max-warnings 0
-          prettier: true
-          prettier_extensions: json,less,css,md,gql,graphql,html,yaml
-          prettier_args: --ignore-path .eslintignore
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+
+      # - name: Run linters
+      #   uses: samuelmeuli/lint-action@v1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+      #     eslint: true
+      #     eslint_extensions: js,jsx,ts,tsx,vue
+      #     eslint_args: --max-warnings 0
+      #     prettier: true
+      #     prettier_extensions: json,less,css,md,gql,graphql,html,yaml
+      #     prettier_args: --ignore-path .eslintignore
 
       # - name: Lint and create report
       #   run: yarn lint --output-file eslint_report.json --format json
@@ -90,20 +89,8 @@ jobs:
         env:
           CI: true
 
-      - name: Create README.md
-        run: npx devkeeper-docs readme
-        env:
-          CI: true
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v4
-        with:
-          message: "docs: auto generate README from template"
-          add: "README.md"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
