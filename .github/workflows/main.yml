@@ -49,10 +49,10 @@ jobs:
           github_token: ${{ secrets.github_token }}
           eslint: true
           eslint_extensions: js,jsx,ts,tsx,vue
-          eslint_args: --max-warnings 0
+          eslint_args: --ignore-path .gitignore --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'
           prettier: true
           prettier_extensions: json,less,css,md,gql,graphql,html,yaml
-          prettier_args: --ignore-path .eslintignore
+          prettier_args: --ignore-path .gitignore
 
       # - name: Lint and create report
       #   run: yarn lint --output-file eslint_report.json --format json
@@ -72,6 +72,29 @@ jobs:
 
       # - name: Check format
       #   run: yarn format
+
+      - name: Wait for ESLint
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-eslint
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: ESLint
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Wait for Prettier
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-prettier
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Prettier
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - run: echo steps.wait-for-eslint.outputs.conclusion
+
+      - run: echo steps.wait-for-prettier.outputs.conclusion
+
+      - name: Do something with a passing build
+        if: steps.wait-for-eslint.outputs.conclusion == 'success' && steps.wait-for-prettier.outputs.conclusion == 'success'
 
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
