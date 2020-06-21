@@ -49,10 +49,10 @@ jobs:
           github_token: ${{ secrets.github_token }}
           eslint: true
           eslint_extensions: js,jsx,ts,tsx,vue
-          eslint_args: --ignore-path .gitignore --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'
+          eslint_args: --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'
           prettier: true
           prettier_extensions: json,less,css,md,gql,graphql,html,yaml
-          prettier_args: --ignore-path .gitignore
+          prettier_args: --ignore-path .eslintignore
 
       # - name: Lint and create report
       #   run: yarn lint --output-file eslint_report.json --format json
@@ -89,13 +89,9 @@ jobs:
           checkName: Prettier
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - run: echo steps.wait-for-eslint.outputs.conclusion
-
-      - run: echo steps.wait-for-prettier.outputs.conclusion
-
       - name: Do something with a passing build
-        run: echo ESLint and Prettier passed.
-        if: steps.wait-for-eslint.outputs.conclusion == 'success' && steps.wait-for-prettier.outputs.conclusion == 'success'
+        run: exit 1
+        if: steps.wait-for-eslint.outputs.conclusion != 'success' || steps.wait-for-prettier.outputs.conclusion != 'success'
 
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
