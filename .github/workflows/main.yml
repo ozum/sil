@@ -43,16 +43,19 @@ jobs:
         env:
           CI: true
 
-      - name: Run linters
-        uses: samuelmeuli/lint-action@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          eslint: true
-          eslint_extensions: js,jsx,ts,tsx,vue
-          eslint_args: --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'
-          prettier: true
-          prettier_extensions: json,less,css,md,gql,graphql,html,yaml
-          prettier_args: --ignore-path .eslintignore
+      - name: Run ESLint
+        run: yarn lint
+
+      # - name: Run linters
+      #   uses: samuelmeuli/lint-action@v1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+      #     eslint: true
+      #     eslint_extensions: js,jsx,ts,tsx,vue
+      #     eslint_args: --max-warnings 0 'src/**/*.+(js|jsx|ts|tsx|vue)'
+      #     prettier: true
+      #     prettier_extensions: json,less,css,md,gql,graphql,html,yaml
+      #     prettier_args: --ignore-path .eslintignore
 
       # - name: Lint and create report
       #   run: yarn lint --output-file eslint_report.json --format json
@@ -73,21 +76,21 @@ jobs:
       # - name: Check format
       #   run: yarn format
 
-      - name: Wait for ESLint
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait-for-eslint
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: ESLint
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      # - name: Wait for ESLint
+      #   uses: fountainhead/action-wait-for-check@v1.0.0
+      #   id: wait-for-eslint
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     checkName: ESLint
+      #     ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - name: Wait for Prettier
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait-for-prettier
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: Prettier
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      # - name: Wait for Prettier
+      #   uses: fountainhead/action-wait-for-check@v1.0.0
+      #   id: wait-for-prettier
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     checkName: Prettier
+      #     ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Do something with a passing build
         run: exit 1
