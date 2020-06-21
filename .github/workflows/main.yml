@@ -48,7 +48,7 @@ jobs:
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           eslintFiles: "src"
-          eslintConfig: ".eslintrc.js",
+          eslintConfig: ".eslintrc.js"
           eslintExt: "ts, tsx, js, jsx, vue"
 
       # - name: Run linters
