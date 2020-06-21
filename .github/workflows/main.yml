@@ -94,6 +94,7 @@ jobs:
       - run: echo steps.wait-for-prettier.outputs.conclusion
 
       - name: Do something with a passing build
+        run: echo ESLint and Prettier passed.
         if: steps.wait-for-eslint.outputs.conclusion == 'success' && steps.wait-for-prettier.outputs.conclusion == 'success'
 
       - name: Test
