@@ -43,11 +43,13 @@ jobs:
         env:
           CI: true
 
-      - name: Run ESLint
-        uses: hallee/eslint-action@1.0.3
-        # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+      - name: Lint
+        uses: Krizzu/eslint-check-action@v1.1.0
         with:
-          repo-token: ${{secrets.GITHUB_TOKEN}}
+          ghToken: ${{ secrets.GITHUB_TOKEN }}
+          eslintFiles: "src"
+          eslintConfig: ".eslintrc.js",
+          eslintExt: "ts, tsx, js, jsx, vue"
 
       # - name: Run linters
       #   uses: samuelmeuli/lint-action@v1
